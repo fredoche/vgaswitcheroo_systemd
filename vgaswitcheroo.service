@@ -1,0 +1,8 @@
+[Unit]
+Description=Deactivate the discrete graphic
+
+[Service]
+ExecStart=/root/nodis.sh
+
+[Install]
+WantedBy=multi-user.target
