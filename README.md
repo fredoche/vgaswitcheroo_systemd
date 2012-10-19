@@ -7,13 +7,13 @@ I will happily accept pull requests if anyone knows a better way to achieve the 
 Description
 ===========
 
-This project consists of two files: A systemd service definition file, and a simple shell script which will issue the right command to turn the graphic adapter OFF.
+This project consists of three files: A systemd service definition file, and two simple shell scripts which will issue the right command to turn the graphic adapter OFF on booting and ON on shutdown. To turn the graphic adapter back on upon shutdown is neccessary, because otherwise it may lead to freezes when saving your alsa-levels.
 
 Installation
 ============
 
-After cloning, move nodis.sh to the /root directory, and vgaswitcheroo.service to /lib/systemd/system/ . After that, issue the following command as root to enable the service on startup.
-```# systemctl enable plop.service```
+After cloning, move *.sh to the /usr/bin/ directory, and vgaswitcheroo.service to /lib/systemd/system/ . After that, issue the following command as root to enable the service on startup.
+```# systemctl enable vgaswitcheroo.service```
 
 Usage
 =====
@@ -22,8 +22,9 @@ This should be enough. If you need to check whether it's working or not, you can
 ```cat /sys/kernel/debug/vgaswitcheroo/switch```
 The expected output should show that the DIScrete adapter is off.
 ```
-0:DIS: :Off:0000:01:00.0
-1:IGD:+:Pwr:0000:00:02.0
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS-Audio: :Off:0000:01:00.1
+2:DIS: :Off:0000:01:00.0
 ```
 
 
