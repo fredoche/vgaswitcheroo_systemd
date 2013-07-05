@@ -4,8 +4,8 @@ Description=Turn discrete graphics off
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=modprobe radeon; echo DIGD > /sys/kernel/debug/vgaswitcheroo/switch; echo OFF > /sys/kernel/debug/vgaswitcheroo/switch
-ExecStop=echo ON > /sys/kernel/debug/vgaswitcheroo/switch
+ExecStart=sh -c modprobe radeon; echo DIGD > /sys/kernel/debug/vgaswitcheroo/switch; echo OFF > /sys/kernel/debug/vgaswitcheroo/switch
+ExecStop=sh -c echo ON > /sys/kernel/debug/vgaswitcheroo/switch
 
 [Install]
 WantedBy=multi-user.target
