@@ -1,11 +1,13 @@
 [Unit]
-Description=Deactivate the discrete graphic
+Description=Turn discrete graphics off
+Requires=sys-kernel-debug.mount
+After=sys-kernel-debug.mount
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/vgaswitcheroo_start.sh
-ExecStop=/usr/bin/vgaswitcheroo_stop.sh
+ExecStart=/bin/sh -c "modprobe radeon && echo DIGD > /sys/kernel/debug/vgaswitcheroo/switch && echo OFF > /sys/kernel/debug/vgaswitcheroo/switch"
+ExecStop=/bin/sh -c "echo ON > /sys/kernel/debug/vgaswitcheroo/switch"
 
 [Install]
 WantedBy=multi-user.target
