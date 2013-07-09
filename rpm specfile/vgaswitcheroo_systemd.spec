@@ -1,7 +1,7 @@
-%global checkout 20130311gitf52fa0d
+%global checkout 20130708gite5cd187
 
 Name:		vgaswitcheroo_systemd
-Version:	1.2
+Version:	1.3
 Release:	1.%{checkout}%{?dist}
 Summary:	Deactivate discrete graphic adapter on startup
 
@@ -24,7 +24,7 @@ the vgaswitcheroo kernel module to manage the power issues,
 however you'd like to save power and save yourself trouble by 
 automatically disabling the discrete adapter on startup. 
 If your distribution uses systemd as init daemon, you can use 
-these pretty simple files to solve this problem
+these pretty simple files to solve this problem.
 
 %prep
 %setup -q -n %{name}-%{version}-%{checkout}
@@ -32,8 +32,6 @@ these pretty simple files to solve this problem
 %build
 
 %install
-install -Dm755 vgaswitcheroo_start.sh %{buildroot}%{_bindir}/vgaswitcheroo_start.sh
-install -m755 vgaswitcheroo_stop.sh %{buildroot}%{_bindir}
 install -Dm644 vgaswitcheroo.service %{buildroot}%{_unitdir}/vgaswitcheroo.service
 
 %post
@@ -46,11 +44,15 @@ install -Dm644 vgaswitcheroo.service %{buildroot}%{_unitdir}/vgaswitcheroo.servi
 %systemd_postun vgaswitcheroo.service
 
 %files
-%doc README.md
-%{_bindir}/vgaswitcheroo_start.sh
-%{_bindir}/vgaswitcheroo_stop.sh
+%doc README.md LICENSE
 %{_unitdir}/vgaswitcheroo.service
 
 %changelog
-* Sun Jun 2 2013 Simone Sclavi <darkhado@gmail.com> 1.2-1.20130311gitf52fa0d
+* Mon Jul 08 2013 Simone Sclavi <darkhado@gmail.com> 1.3-1.20130708gite5cd187
+- Update to release 1.3
+
+* Thu Jun 27 2013 Simone Sclavi <darkhado@gmail.com> 1.2-2.20130311gitf52fa0d
+- Fixed License
+
+* Sun Jun 02 2013 Simone Sclavi <darkhado@gmail.com> 1.2-1.20130311gitf52fa0d
 - Initial build
