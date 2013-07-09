@@ -1,16 +1,12 @@
-%global checkout 20130708gite5cd187
-
 Name:		vgaswitcheroo_systemd
 Version:	1.3
-Release:	1.%{checkout}%{?dist}
+Release:	1%{?dist}
 Summary:	Deactivate discrete graphic adapter on startup
 
 Group:		System Environment/Daemons
 License:	GPLv3+
 URL:		https://github.com/fredoche/%{name}
-Source0:	%{name}-%{version}-%{checkout}.tar.gz
-#Source0-generating script
-Source1:	%{name}-get-snapshot.sh
+Source0:	https://github.com/fredoche/%{name}/archive/master.zip
 Requires:	systemd
 Requires(post): systemd
 Requires(preun): systemd
@@ -27,7 +23,7 @@ If your distribution uses systemd as init daemon, you can use
 these pretty simple files to solve this problem.
 
 %prep
-%setup -q -n %{name}-%{version}-%{checkout}
+%setup -q -n %{name}-master
 
 %build
 
@@ -48,11 +44,5 @@ install -Dm644 vgaswitcheroo.service %{buildroot}%{_unitdir}/vgaswitcheroo.servi
 %{_unitdir}/vgaswitcheroo.service
 
 %changelog
-* Mon Jul 08 2013 Simone Sclavi <darkhado@gmail.com> 1.3-1.20130708gite5cd187
-- Update to release 1.3
-
-* Thu Jun 27 2013 Simone Sclavi <darkhado@gmail.com> 1.2-2.20130311gitf52fa0d
-- Fixed License
-
-* Sun Jun 02 2013 Simone Sclavi <darkhado@gmail.com> 1.2-1.20130311gitf52fa0d
+* Tue Jul 09 2013 Simone Sclavi <darkhado@gmail.com> 1.3-1
 - Initial build
