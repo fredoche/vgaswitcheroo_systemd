@@ -1,5 +1,5 @@
 #! /bin/sh
-service=$(/bin/ls *.service)
+service=$(*.service)
 
 read -p "Do you want to enable the $service? y/n: "
 if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -12,6 +12,7 @@ read -p "Should we load the radeon module during bootup? y/n: "
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo radeon > /etc/modules-load.d/radeon.conf
     echo "The 'radeon' module is now loaded during startup. See /etc/modules-load.d/radeon.conf"
+    echo 
 fi
 
 read -p "Should we load the radeon module during bootup? y/n: "
