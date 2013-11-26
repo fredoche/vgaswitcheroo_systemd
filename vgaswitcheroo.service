@@ -6,7 +6,9 @@ After=sys-kernel-debug.mount
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/bin/sh -c "modprobe radeon && echo DIGD > /sys/kernel/debug/vgaswitcheroo/switch && echo OFF > /sys/kernel/debug/vgaswitcheroo/switch"
+ExecStartPre=/usr/bin/modprobe radeon
+ExecStart=/bin/sh -c "echo DIGD > /sys/kernel/debug/vgaswitcheroo/switch"
+ExecStart=/bin/sh -c "echo OFF > /sys/kernel/debug/vgaswitcheroo/switch"
 ExecStop=/bin/sh -c "echo ON > /sys/kernel/debug/vgaswitcheroo/switch"
 
 [Install]
